@@ -31,6 +31,8 @@ Vagrant.configure('2') do |config|
       config.vm.hostname = "windows#{i}"
       config.vm.network :private_network, ip: "10.10.10.10#{i}", libvirt__forward_mode: 'route', libvirt__dhcp_enabled: false
       config.vm.provision :shell, inline: "'#{hosts}' | Out-File -Encoding Ascii -Append c:/Windows/System32/drivers/etc/hosts"
+      config.vm.provision :shell, path: 'ps.ps1', args: 'provision-ultravnc-mirror-driver.ps1'
+      config.vm.provision :reload
       config.vm.provision :shell, path: 'ps.ps1', args: 'provision-common.ps1'
       config.vm.provision :shell, path: 'ps.ps1', args: 'provision-certificates.ps1'
       config.vm.provision :shell, path: 'ps.ps1', args: 'provision-ultravnc.ps1'
