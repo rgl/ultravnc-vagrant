@@ -15,7 +15,8 @@ Write-Host 'Configuring MS Logon ACL...'
 # NB the user can login using the local Windows users credentials.
 # Write-Host 'Configuring VNC and View-Only passwords...'
 # # NB each password must be at most 8 bytes.
-# &"$ultraVncHome\setpasswd.exe" vagrant vagrant
+# # NB each role should have a different password.
+# &"$ultraVncHome\setpasswd.exe" vagrant vagrantViewOnly
 
 Write-Host 'Restarting service...'
 Restart-Service uvnc_service
