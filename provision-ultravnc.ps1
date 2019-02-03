@@ -18,8 +18,11 @@ Write-Host 'Configuring MS Logon ACL...'
 # # NB each role should have a different password.
 # &"$ultraVncHome\setpasswd.exe" vagrant vagrantViewOnly
 
-Write-Host 'Restarting service...'
-Restart-Service uvnc_service
+Write-Host 'Installing the uvnc_service windows service...'
+&"$ultraVncHome\winvnc.exe" -install | Out-String -Stream
+
+Write-Host 'Starting the uvnc_service service...'
+Start-Service uvnc_service
 
 # open the firewall.
 Write-Host 'Creating the firewall rule to allow inbound TCP/IP access to the UltraVNC port 5900 and 5800...'
